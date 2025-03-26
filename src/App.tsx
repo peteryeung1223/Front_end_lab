@@ -1,52 +1,43 @@
-import { useState } from "react";
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-import "antd/dist/reset.css";
-import { Card, Button, DatePicker, Flex, Col, Row } from "antd";
-import Hello from "./components/hello";
-import DetailCard from "./components/DetailCard";
+import { Layout, Space } from 'antd';
+import React from 'react';
+import './App.css';
+import {
+    BrowserRouter as Router,
+    Routes, Route, Link, BrowserRouter
+} from 'react-router-dom'
+import Home from './components/Home'
+import Dashboard from './components/Dashboard'
+import About from './components/About'
+import Articles from './components/Articles'
+import DetailArticle from './components/DetailArticle';
+const { Header, Content, Footer } = Layout;
+const App = () => {
+    return (
+        <BrowserRouter>
+            <Header>
+                <nav>
+                    <Space>
+                        <Link to="/">Home</Link>
+                        <Link to="/dashboard">Dashboard</Link>
+                        <Link to="/about">About</Link>
+                        <Link to="/articles">Article</Link>
+                    </Space>
+                </nav>
+            </Header>
+            <Content>
+                <Routes>
+                    <Route index element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/articles" element={<Articles/>} />
+                    <Route path="/detail/:aid" element={<DetailArticle/>} />
+                </Routes>
+            </Content>
+            <Footer>
+                <p>VT6003CEM Demo</p>
+            </Footer>
 
-function App() {
-  const [count, setCount] = useState(0);
-
-  let counter = 0;
-  const onChange: DatePickerProps["onChange"] = (date, dateString) => {
-    console.log(date, dateString);
-  };
-  const onClick = (event: any) => {
-    console.log(counter++);
-  };
-
-  const add = () => setCount((count) => count + 1);
-
-  return (
-    <>
-      <div>
-        <Hello name="Good Bye" />
-        <div style={{maxWidth: "80%"}}>
-          <Row gutter={[16, 24]}>
-            {Array.from({ length: 6 }, (_, i) => (
-              <Col className="gutter-row" span={24} md={8}>
-                <DetailCard />
-              </Col>
-            ))}
-          </Row>
-        </div>
-        <br />
-
-        <Button type="primary" onClick={add}>
-          {count}
-        </Button>
-        <Button type="primary" danger>
-          Button
-        </Button>
-
-        <br />
-        <DatePicker onChange={onChange} />
-      </div>
-    </>
-  );
+        </BrowserRouter>
+    );
 }
-
 export default App;
