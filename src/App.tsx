@@ -10,6 +10,8 @@ import Dashboard from './components/Dashboard'
 import About from './components/About'
 import Articles from './components/Articles'
 import DetailArticle from './components/DetailArticle';
+import NewArticle from './components/NewAritcles';
+
 const { Header, Content, Footer } = Layout;
 const App = () => {
     return (
@@ -17,6 +19,7 @@ const App = () => {
             <Header>
                 <nav>
                     <Space>
+                        <Link to="/NewAritcles">New Article</Link>
                         <Link to="/">Home</Link>
                         <Link to="/dashboard">Dashboard</Link>
                         <Link to="/about">About</Link>
@@ -27,6 +30,7 @@ const App = () => {
             <Content>
                 <Routes>
                     <Route index element={<Home />} />
+                    <Route path="/NewAritcles" element={<NewArticle />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/articles" element={<Articles/>} />
